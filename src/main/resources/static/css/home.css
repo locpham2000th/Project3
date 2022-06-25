@@ -1,0 +1,145 @@
+body{
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+header {
+    position: relative;
+    height: 5%;
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+header > h2 {
+    /* margin-top: 0; */
+}
+
+header > i{
+    /* right: 0px; */
+    position: absolute;
+}
+
+.body{
+    height: 95%;
+    position: relative;
+}
+
+.body-children{
+    position: relative;
+    height: 50%;
+    width: 100%;
+    margin: auto !important;
+}
+
+.title-place{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+}
+
+#list-place{
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 80%;
+    /*flex-grow: 1;*/
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table-place{
+    position: absolute;
+    max-height: 100%;
+    margin: 0;
+    border: solid 1px black;
+}
+
+.list-place-row{
+    display: flex;
+}
+
+.table-place tr{
+    border-bottom: solid 1px black;
+}
+
+.table-place tr:hover{
+    background-color: antiquewhite;
+}
+
+.container-chart{
+    position: relative;
+    /*height: 100%;*/
+    height: auto;
+}
+
+.chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chart > div{
+    display: flex;
+    justify-content: center;
+}
+
+#button-down-option{
+    cursor: pointer;
+}
+
+#body-drop-down-option{
+    z-index: 2;
+    position: fixed;
+    right: 20px;
+    top: 33px;
+    background: #b23030;
+    height: 40px;
+    width: 100px;
+    /*display: flex;*/
+    /* align-content: center; */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: none;
+}
+
+.place-contain{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.id-place{
+    display: none;
+}
+
+.place-name{
+    background: red;
+    height: 80%;
+    width: 80%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#no-place{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
