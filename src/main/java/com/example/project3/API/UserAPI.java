@@ -5,7 +5,6 @@ import com.example.project3.service.UserService;
 import com.example.project3.service.dto.PlaceDTO;
 import com.example.project3.service.dto.UserDTO;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 @RestController
 public class UserAPI {
@@ -52,8 +49,8 @@ public class UserAPI {
     }
 
     @GetMapping(value = "/logout")
-    public void logout(@RequestParam long id){
-        userService.logout(id);
+    public void logout(@CookieValue(value = "project3", defaultValue = "unknown") String cookie){
+        userService.logout(cookie);
     }
 
     @GetMapping(value = "/place/getlist/{iduser}")

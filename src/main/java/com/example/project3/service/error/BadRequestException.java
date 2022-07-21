@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.StatusType;
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ResponseStatus(HttpStatus.BAD_GATEWAY)
 public class BadRequestException extends AbstractThrowableProblem {
 
     public BadRequestException(String key, String param){
@@ -19,7 +19,7 @@ public class BadRequestException extends AbstractThrowableProblem {
             public String getReasonPhrase() {
                 return null;
             }
-        }, param);
+        });
     }
 
 }

@@ -3,13 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>Place</title>
-    <link rel="stylesheet" href="css/place.css">
+    <link rel="stylesheet" href="../css/place.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/85f10d5e39.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/place.js"></script>
+    <script type="text/javascript" src="../js/place.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALevtmIg2e0HF8jpYaHCn7C21fhH3ANHE&callback=initMap" async defer></script>-->
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALevtmIg2e0HF8jpYaHCn7C21fhH3ANHE&callback=initMap">
+    </script>
 </head>
 <body>
+    <header>
+        <h2>Đây là Place: <span id="name-place"></span><span id="id-user" style="display: none"></span></h2>
+        <span class="button-back-home" onclick="history.back()" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"/></svg>
+        </span>
+        <i class="fas fa-caret-down" style="font-size: 30px;right: 10px;" id="button-down-option" ></i>
+        <div id="body-drop-down-option" >
+                <span id="logout" >
+                    Đăng xuất
+                </span>
+        </div>
+    </header>
+    <div class="body">
+        <div class="row body-children">
+            <div class="col-8">
+                <div id="map"></div>
 
+                <!-- Replace YOUR_API_KEY here by your key above -->
+
+            </div>
+            <div class="col-4" style="display: flex; flex-direction: column; position: relative; height: 100%;" >
+                <div class="title-place">
+                    Danh sách thiết bị
+                </div>
+                <div id="list-device">
+
+                </div>
+                <div class="button-add-place">
+
+                    <!--                    Button add place -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Thêm thiết bị
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Thêm thiết bị</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group row">
+                                            <label for="inputNamePlace" class="col-sm-2 col-form-label">Tên thiết bị</label>
+                                            <div class="col-sm-10">
+                                                <input name="namePlace" type="text" class="form-control" id="inputNamePlace" placeholder="Tên địa điểm" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Loại thiết bị</label>
+                                            <div style="width: 83%;">
+                                                <select id="device-kind" class="form-select form-control" aria-label="Default select example">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" onclick="confirmAddDevice(this)" >Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row body-children">
+            <div class="col-8" style="overflow-x: auto; height: 100%;" id="container-chart">
+            </div>
+            <div class="col-4" style="border-top: solid 1px; padding: 0px; border-left: solid 1px;" >
+                <div class="header-alarm">
+                    <h3>Cảnh báo</h3>
+                </div>
+                <div class="body-alarm">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name Device</th>
+                            <th scope="col" style="width: 80%;">Title</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

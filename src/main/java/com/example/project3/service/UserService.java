@@ -34,16 +34,21 @@ public class UserService {
             userRepository.save(user);
             return user;
         }else {
-            throw new BadRequestException("error.notFound", null);
+            throw new BadRequestException("error.notFound", "null");
         }
     }
 
-    public void logout(long id){
-        Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()){
-            User user = userOptional.get();
-            user.setCookie(null);
-            userRepository.save(user);
+    public void logout(String cookie){
+        if (cookie.equals("unknown")){
+            throw new BadRequestException("error.notCookie", null);
+        }
+        Optional<User> userOptional = userRepository.findByCookie(cookie);
+        if (userOptional.isPresent()){
+            if(userOptional.isPresent()){
+                User user = userOptional.get();
+                user.setCookie(null);
+                userRepository.save(user);
+            }
         }
     }
 

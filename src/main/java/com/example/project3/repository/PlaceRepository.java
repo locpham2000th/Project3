@@ -17,5 +17,8 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
 
     Optional<Place> findByUserAndName(User user, String name);
 
+    Optional<Place> findByUserAndId(User user, long id);
+
+    List<Place> findAllByUserAndId(User user, long id);
 
 }

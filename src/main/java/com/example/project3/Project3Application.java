@@ -27,30 +27,4 @@ public class Project3Application {
         SpringApplication.run(Project3Application.class, args);
     }
 
-//    @Scheduled(fixedRate = 60000)
-    public void test() throws IOException {
-        try {
-            URL url = new URL("https://www.techone.vn/dien-thoai-samsung-a03s.html");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(10000);
-            connection.setReadTimeout(10000);
-            int statusCode = connection.getResponseCode();
-            String html = "";
-            if (statusCode > 299){
-                html = IOUtils.toString(connection.getErrorStream(),"UTF-8");
-            }else {
-                html = IOUtils.toString(connection.getInputStream(), "UTF-8");
-            }
-            System.out.println(html);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
-
-
-
-

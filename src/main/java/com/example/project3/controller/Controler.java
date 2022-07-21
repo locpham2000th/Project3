@@ -1,11 +1,8 @@
 package com.example.project3.controller;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,10 +30,10 @@ public class Controler {
         return modelAndView;
     }
 
-    @RequestMapping("/add-place")
-    public ModelAndView addPlace(){
+    @RequestMapping("/place/{id}")
+    public ModelAndView addPlace(@PathVariable long id ){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-place");
+        modelAndView.setViewName("place");
         return modelAndView;
     }
 

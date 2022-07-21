@@ -16,8 +16,9 @@ public class InfoDTO {
     private List<String> nameDevice;
     private List<String> value;
     private List<Boolean> realTimes;
+    private List<Boolean> actives;
 
-    public InfoDTO(User user, Place place,List<Long> ids, List<String> names, List<String> values, List<Boolean> realTimes) {
+    public InfoDTO(User user, Place place,List<Long> ids, List<String> names, List<String> values, List<Boolean> realTimes, List<Boolean> actives) {
         this.idUser = user.getId();
         this.idPlace = place.getId();
         this.namePlace = place.getName();
@@ -25,6 +26,7 @@ public class InfoDTO {
         this.nameDevice = names;
         this.value = values;
         this.realTimes = realTimes;
+        this.actives = actives;
     }
 
     public long getIdUser() {
@@ -81,5 +83,13 @@ public class InfoDTO {
 
     public void setRealTimes(List<Boolean> realTimes) {
         this.realTimes = realTimes;
+    }
+
+    public List<Boolean> getActive() {
+        return actives;
+    }
+
+    public void setActive(List<Boolean> active) {
+        this.actives = active;
     }
 }

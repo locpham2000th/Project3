@@ -12,11 +12,17 @@ public class PlaceDTO {
         this.id = place.getId();
         this.name = place.getName();
         this.user = place.getUser();
+        this.lat = place.getLat();
+        this.lng = place.getLng();
     }
 
     private Long id;
 
     private String name;
+
+    private double lat;
+
+    private double lng;
 
     private User user;
 
@@ -44,4 +50,19 @@ public class PlaceDTO {
         this.user = user;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 }

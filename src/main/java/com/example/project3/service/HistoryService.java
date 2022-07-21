@@ -5,10 +5,12 @@ import com.example.project3.entity.History;
 import com.example.project3.entity.Place;
 import com.example.project3.entity.User;
 import com.example.project3.repository.*;
+import com.example.project3.service.dto.AlarmDTO;
 import com.example.project3.service.dto.HistoryDTO;
 import com.example.project3.service.error.BadRequestException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -25,7 +27,11 @@ public class HistoryService {
     private final PlaceRepository placeRepository;
     private final KindDeviceRepository kindDeviceRepository;
 
-    public HistoryService(HistoryRepository historyRepository, UserRepository userRepository, DeviceRepository deviceRepository, PlaceRepository placeRepository, KindDeviceRepository kindDeviceRepository) {
+    public HistoryService(HistoryRepository historyRepository,
+                          UserRepository userRepository,
+                          DeviceRepository deviceRepository,
+                          PlaceRepository placeRepository,
+                          KindDeviceRepository kindDeviceRepository) {
         this.historyRepository = historyRepository;
         this.userRepository = userRepository;
         this.deviceRepository = deviceRepository;
@@ -66,7 +72,18 @@ public class HistoryService {
 
     public List<HistoryDTO> getTenData(long id) {
         List<History> historyList = historyRepository.findHistoryByDeviceAndTimeBefore(id, Instant.now(), PageRequest.of(0, 10, Sort.Direction.DESC, "id"));
-        System.out.println(historyList);
+//        System.out.println(historyList);
         return historyList.stream().map(HistoryDTO::new).collect(Collectors.toList());
+    }
+
+    public HistoryDTO getFirstHistory(long id) {
+        Optional<Device> deviceOptional = deviceRepository.findById(id);
+        if (deviceOptional.isPresent()){
+            Optional<History> historyOptional = historyRepository.findFirstByDeviceOrderByIdDesc(deviceOptional.get());
+            if (historyOptional.isPresent()){
+                return new HistoryDTO(historyOptional.get());
+            }
+        }
+        return null;
     }
 }

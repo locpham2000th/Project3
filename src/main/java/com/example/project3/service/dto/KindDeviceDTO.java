@@ -1,13 +1,28 @@
-package com.example.project3.entity;
+package com.example.project3.service.dto;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "kind_device")
-public class KindDevice {
+import com.example.project3.entity.KindDevice;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class KindDeviceDTO {
+
+    public KindDeviceDTO(KindDevice kindDevice) {
+        this.id = kindDevice.getId();
+        this.name = kindDevice.getName();
+        this.value = kindDevice.getValue();
+        this.random = kindDevice.getRandom();
+        this.unit = kindDevice.getUnit();
+        this.realTime = kindDevice.isRealTime();
+        this.min = kindDevice.getMin();
+        this.max = kindDevice.getMax();
+        this.titleMax = kindDevice.getTitleMax();
+        this.titleMin = kindDevice.getTitleMin();
+    }
+
     private Long id;
 
     private String name;
@@ -18,17 +33,14 @@ public class KindDevice {
 
     private String unit;
 
-    @Column(name = "real_time")
     private boolean realTime;
 
     private int max;
 
     private int min;
 
-    @Column(name = "title_min")
     private String titleMin;
 
-    @Column(name = "title_max")
     private String titleMax;
 
     public Long getId() {
@@ -111,4 +123,3 @@ public class KindDevice {
         this.titleMax = titleMax;
     }
 }
-

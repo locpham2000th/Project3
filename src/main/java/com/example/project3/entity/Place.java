@@ -16,6 +16,10 @@ public class Place {
     @JoinColumn(name = "id_user")
     private User user;
 
+    private double lat;
+
+    private double lng;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +44,20 @@ public class Place {
         this.user = user;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 }
 

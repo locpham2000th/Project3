@@ -12,12 +12,13 @@ $(document).ready(function(){
                 password: password
             },
             success: function (response) {
-                alert(response)
+                // alert(response)
+                alert("Đã tạo tài khoản thành công")
+                window.location = `/`
             },
             error: function () {
                 alert("Đã tồn tại email này")
             }
-
         })
     })
     $("#login").click(function (){

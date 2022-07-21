@@ -39,42 +39,132 @@ header > i{
     margin: auto !important;
 }
 
+#map {
+    height: 100%;
+}
+
 .title-place{
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 10%;
-}
-
-#list-place{
-    position: relative;
-    width: 100%;
-    overflow-y: auto;
-    max-height: 80%;
-    /*flex-grow: 1;*/
-    display: flex;
     align-items: center;
-    flex-direction: column;
-}
-
-.table-place{
-    position: absolute;
-    max-height: 100%;
-    margin: 0;
-    border: solid 1px black;
+    height: 10%;
 }
 
 .list-place-row{
     display: flex;
+    border-top: solid 1px red;
+    align-items: center;
 }
 
-.table-place tr{
-    border-bottom: solid 1px black;
+.list-place-row-contain{
+    width: 85%;
+    display: flex;
 }
 
-.table-place tr:hover{
+/*.list-place-row-contain:hover{*/
+/*    background-color: antiquewhite;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.list-place-row:hover{
     background-color: antiquewhite;
+    cursor: pointer;
 }
+
+.list-place-row-name{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-place-row-col{
+    width: 100%;
+    position: relative;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+}
+
+.button-delete-place{
+    width: 15%;
+}
+
+.list-place-row-col-device:last-child{
+    border-bottom: none;
+}
+
+.list-place-row-col-device{
+    border-bottom: solid 1px;
+}
+
+#list-place{
+    max-height: 76%;
+    margin-bottom: 2%;
+    overflow-y: auto;
+    border-bottom: solid 1px red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+}
+
+.button-add-place{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.header-alarm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 10%;
+}
+
+.body-alarm{
+    position: absolute;
+    height: 90%;
+    overflow-y: auto;
+}
+
+.body-alarm th {
+    border: solid 1px;
+}
+
+/*.title-place{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 10%;*/
+/*}*/
+
+/*#list-place{*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    overflow-y: auto;*/
+/*    max-height: 80%;*/
+/*    !*flex-grow: 1;*!*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.table-place{*/
+/*    position: absolute;*/
+/*    max-height: 100%;*/
+/*    margin: 0;*/
+/*    border: solid 1px black;*/
+/*}*/
+
+/*.table-place tr{*/
+/*    border-bottom: solid 1px black;*/
+/*}*/
+
+/*.table-place tr:hover{*/
+/*    background-color: antiquewhite;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .container-chart{
     position: relative;
